@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+
+</head>
+
+<body>
+    <div class="container-fluid bg-dark">
+        <div class="row login-navbar bg-success mx-auto w-75">
+            <div class="bg-dark">
+                <a id="navbar-button" href="index.html"><img src="./images/moviedb-logo.jpg" alt="The MovieDB Logo" style="width:50px"></a>
+				<a id="navbar-button" href="about.html">About</a>
+            </div>
+        </div>
+        <div class="row mx-auto w-75">
+            <div id="left-panel" class="col col-3 col-xl-3 col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                <img id="watch_img">
+                <a id="watch_btn" class="mt-2 mb-1 btn-lg btn btn-block btn-primary">Watch</a>
+                <div id="social-actions" class="mt-2">
+                    <button><i class="pointer icon icon-emoji"></i></button>
+                    <button><i class="pointer icon icon-emoji"></i></button>
+                    <button><i class="pointer icon icon-emoji"></i></button>
+                </div>
+                <table class="table text-dark">
+                    <colgroup>
+                        <col span="1" style="width: 40%;">
+                        <col span="1" style="width: 60%;" </colgroup>
+                    <tbody id="watch_infor">
+                    </tbody>
+                </table>
+            </div>
+            <div id="right-panel" class="col">
+                <div id="video-wrapper"></div>
+                <h1 class="section-title">Information:</h1>
+                <div id="section-desc"></div>
+                <h1 class="section-title">Related movies:</h1>
+                <div class="related-frame">
+                    <div class="row related-row-1"></div>
+                    <div class="row related-row-2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
