@@ -1,95 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>My Movie App</title>
-	<link rel="stylesheet" href="movies_frame.css">
-	<link rel="stylesheet" href="movies_detail.css">
-	<link rel="stylesheet" href="outside.css">
-	<link rel="stylesheet" href="genres_pagination.css">
-
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-		crossorigin="anonymous"></script>
-	<script type="module" src="main.js"></script>
-	<script type="module" src="SEARCH.js"></script>
-
+  <title>My Movie App</title>
+  <style>
+    /* styles for the page */
+  </style>
+  <link rel="stylesheet" href="landing_page.css">
 </head>
 
-<body class="body">
-	<!-- HEADER -->
-	<div class="header">
-		<h1>Welcome to My Movie App</h1>
-		<p>Discover the latest movies and TV shows</p>
-		<button href="#" class="cta" id="random_btn">Random</button>
-		<button href="#" class="cta" id="top_rated_btn">Top Rated</button>
-		<button href="#" class="cta" id="popular_btn">Popular</button>
-		<button href="#" class="cta" id="upcoming_btn">Upcoming</button>
-	</div>
+<body>
+  <header>
+    <h1>My Movie App</h1>
+  </header>
 
-	<!-- MOVIES-SECTION -->
-	<div class="container-fluid" id="content-section">
-		<div class="row mx-auto w-75">
-			<div class="input-group mb-3 navbar">
-				<input id="search" type="text" class="form-control" placeholder="Tìm theo tên phim"
-					aria-label="Recipient's username" aria-describedby="basic-addon2">
-				<button class="input-group-text" id="basic-addon2"><i class="bi bi-search"></i></button>
-				<a id="navbar-button" href="index.html"><img src="./images/moviedb-logo.jpg" alt="The MovieDB Logo"
-						style="width:50px"></a>
-				<a id="navbar-button" href="about.html">About</a>
-			</div>
-		</div>
-		<div class="row mx-auto w-75">
-			<div class="col col-2 col-xl-2 col-lg-3 col-md-12 col-sm-12 col-xs-12">
-				<ul class="list-group sticky-top"></ul>
-			</div>
-			<div class="col display-content">
-				<div class="RANDOM" id="movie-section">
-					<h2># RANDOM</h2>
-					<div class="row random_row"></div>
-				</div>
+  <div class="hero-image">
+    <img src="./images/introduced.gif" alt="initial gif">
+  </div>
 
-				<div class="TOP_RATED" id="movie-section">
-					<h2># TOP RATED</h2>
-					<div class="row top_rated_row"></div>
-				</div>
+  <div class="content">
+    <h2>Discover the best movies</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor, magna vitae congue malesuada, mi eros fermentum est, sit amet bibendum nibh ipsum vel velit.</p>
+    <a href="app.html" id="cta-button">Get Started</a >
+  </div>
 
-				<div class="POPULAR" id="movie-section">
-					<h2># POPULAR</h2>
-					<div class="row popular_row"></div>
-				</div>
-
-				<div class="UPCOMING" id="movie-section">
-					<h2># UPCOMING</h2>
-					<div class="row upcoming_row"></div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div id="wall"></div>
-	<footer>
-		<div class="footer-container">
-			<div class="footer-left">
-				<p>Copyright © 2023 My Movie App</p>
-			</div>
-			<div class="footer-right">
-				<nav>
-					<ul>
-						<li><a href="#">Home</a></li>
-						<li><a href="#">About</a></li>
-						<li><a href="#">Contact</a></li>
-					</ul>
-				</nav>
-			</div>
-		</div>
-	</footer>
 </body>
 
 </html>
