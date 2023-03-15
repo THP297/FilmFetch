@@ -9,7 +9,6 @@
   height: 10%;
   width: 100%;
 }
-
 .header h1 {
   display: inline-block;
   font-size: 36px;
@@ -19,13 +18,11 @@
   -webkit-text-fill-color: rgb(32, 31, 31);
   filter: blur(0.1px);
 }
-
 @keyframes blink {
   50% {
     opacity: 0.4;
   }
 }
-
 .header p {
   margin: 0;
   padding: 0;
@@ -33,19 +30,11 @@
   color: rgba(233, 13, 237, 0.5);
 }
 
-/* ----------------------------------------------------CONTENT SECTION----------------------------------------------------- */
 .content-section {
   height: 80%;
 }
 
-#no-result {
-  font-size: 30px;
-}
-
-#search:-webkit-autofill,
-#search:-webkit-autofill:hover,
-#search:-webkit-autofill:focus,
-#search:-webkit-autofill:active {
+#search:-webkit-autofill, #search:-webkit-autofill:hover, #search:-webkit-autofill:focus, #search:-webkit-autofill:active {
   -webkit-background-clip: text;
 }
 
@@ -64,7 +53,6 @@
   border-radius: 20px;
   border: 1px solid rgba(233, 13, 237, 0.5);
 }
-
 #search:focus {
   outline: none;
   border: 3px solid rgba(233, 13, 237, 0.5);
@@ -74,11 +62,9 @@
   background: none;
   border: 1px solid rgba(233, 13, 237, 0.5);
 }
-
 #searchBtn i {
   color: rgba(233, 13, 237, 0.5);
 }
-
 #searchBtn:hover {
   border: 1px solid rgba(233, 13, 237, 0.5);
   background-color: rgba(233, 13, 237, 0.5);
@@ -92,7 +78,6 @@
 
 #wrapperLink {
   display: flex;
-  justify-content: center;
 }
 
 a {
@@ -100,7 +85,7 @@ a {
 }
 
 .category {
-
+  width: 100%;
   -webkit-text-stroke: 1px rgb(234, 157, 238);
   -webkit-text-fill-color: rgb(32, 31, 31);
   font-size: 20px;
@@ -110,15 +95,14 @@ a {
   margin-bottom: 5px;
   border-radius: 5px;
   transition: all 0.3s ease;
+  text-align: center;
 }
-
 .category:hover {
   -webkit-text-stroke: 1px rgb(234, 157, 238);
   -webkit-text-fill-color: rgb(32, 31, 31);
   filter: blur(0.1px);
   transform: scale(1.5);
 }
-
 .category.active {
   background-color: #555;
 }
@@ -135,17 +119,15 @@ h2 {
   font-weight: bolder;
 }
 
-#random_row,
-#popular_row {
+#random_row, #popular_row {
   padding-top: 25px;
 }
 
-#top_rated_row,
-#upcoming_row {
+#top_rated_row, #upcoming_row {
   padding-top: 25px;
 }
 
-/* -------------------------------------------------------FOOTER------------------------------------------------------- */
+/* FOOTER */
 .footer {
   height: 10%;
 }
