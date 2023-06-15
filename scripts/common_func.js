@@ -33,15 +33,16 @@ function PUSH_related(id, related_movie) {
 
   const url = get_related_movie_url(id);
   get_related_movie(url).then((data) => {
-    const popular_row_1 = data.results.slice(0, 12);
-    console.log(popular_row_1.length);
-    if (popular_row_1.length == 0) {
+    console.log(data.results.length);
+    if (data.results.length == 0) {
       let related_movies = document.querySelector("#related_movies");
       related_movies.style.display = "none";
     }
-
-    popular_row_1.forEach((element) => {
-      Push_related_movie_poster(related_movie, element);
+    data.results.forEach((element) => {
+      if (!element.poster_path) {
+      } else {
+        Push_related_movie_poster(related_movie, element);
+      }
     });
   });
 }
