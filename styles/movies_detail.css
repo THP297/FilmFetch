@@ -1,3 +1,7 @@
+.container-fluid{
+    min-height: 100vh;
+}
+
 #home-btn {
     background: none;
     display: inline-block;
