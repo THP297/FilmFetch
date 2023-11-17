@@ -1,76 +1,70 @@
-import { create_movie_frame, DefinePoster, IMG_URL } from "./common_func.js";
+import { create_movie_frame } from "./common_func.js";
 
 const content_section = document.querySelector(".content-section");
 
-export function PUSH(target) {
+export async function PUSH(target) {
   content_section.style.height = "100vh";
 
-  const API_KEY = "?api_key=846f16d2846b863d9986bcc6dbb1b6c2";
-  const BASE_URL = "https://api.themoviedb.org/3/discover/movie";
+  const API_KEY = "846f16d2846b863d9986bcc6dbb1b6c2";
+  const BASE_URL = "https://api.themoviedb.org/3";
   const GENRES = document.querySelector(".genre-frame");
-  const hashmap = {};
-  hashmap["movies_title"] = [];
+  
 
-  function Push_genre_movie_poster(data) {
-    data.results.forEach((movie) => {
-      hashmap["movies_title"].push([movie.original_title, movie]);
-    });
-  }
 
-  async function get_genre_movie(url) {
+  async function searchMovieByName(movieName) {
+
+    let allResults = [];
+  
     try {
-      const response = await fetch(url);
-      const data = await response.json();
-      Push_genre_movie_poster(data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  function get_genre_movie_url() {
-    const promises = [];
-    for (let i = 1; i <= 500; i++) {
-      var page = "&page=" + String(i);
-      let url = BASE_URL + API_KEY + page;
-      promises.push(get_genre_movie(url));
-    }
-    return Promise.all(promises);
-  }
-
-  const PaginationVisible = document.querySelector(".pagination");
-  PaginationVisible.style.display = "none";
-
-  const spinner = document.querySelector("#spinner");
-  spinner.style.display = "block";
-
-  get_genre_movie_url()
-    .then((res) => {
-      content_section.style.height = "auto";
-      PaginationVisible.style.display = "flex";
-      spinner.style.display = "none";
-      const arr_title = hashmap["movies_title"];
-      const targetSet = new Set(target);
-      const result = [];
-      for (const element of arr_title) {
-        if (element[0].split(" ").some((x) => targetSet.has(x.toLowerCase()))) {
-          result.push(element[1]);
+      let page = 1;
+      let totalPages = 1; // Initialize totalPages to a value greater than the starting page
+  
+      while (page <= totalPages) {
+        const response = await fetch(
+          `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${encodeURIComponent(movieName)}&page=${page}`
+        );
+        const data = await response.json();
+  
+        if (data.results && data.results.length > 0) {
+          allResults = allResults.concat(data.results);
+          totalPages = data.total_pages;
+          console.log(totalPages);
+          page++;
+        } else {
+          console.error('No results found.');
+          break; // No need to continue if there are no results
         }
       }
-      if (result.length == 0) {
-        content_section.style.height = "100vh";
-        let no_result = document.querySelector("#no-result");
-        no_result.innerHTML = `#No result for: ${target[0]}`;
-        no_result.style.display = "block";
-      }
+  
+      console.log('All search results:', allResults);
+      return allResults;
+    } catch (error) {
+      console.error('Error searching for movies:', error.message);
+      return [];
+    }
+  }
 
-      const movie_genre = result;
+    const PaginationVisible = document.querySelector(".pagination");
+    PaginationVisible.style.display = "none";
+
+    const spinner = document.querySelector("#spinner");
+    spinner.style.display = "block";
+
+    content_section.style.height = "auto";
+    PaginationVisible.style.display = "flex";
+    spinner.style.display = "none";
+
+      const movie_genre = await searchMovieByName(target[0])
+
       const page_length = Math.ceil(movie_genre.length / 18);
 
       const input_page = document.querySelector("#input-page");
       input_page.setAttribute("placeholder", ".../" + String(page_length));
       let currentPage = 1;
+
       const slicePage = document.querySelector(".slice-page");
       const rangeButtonPage = document.querySelector("#range-button-page");
+
       const firstButton = document.querySelector("#first-button");
       firstButton.innerHTML = "1";
 
@@ -110,7 +104,14 @@ export function PUSH(target) {
         while (rangeButtonPage.firstChild) {
           rangeButtonPage.removeChild(rangeButtonPage.firstChild);
         }
+        
         for (let i = page; i <= page + 2; i++) {
+
+            if (i > Math.ceil(movie_genre.length/ 18))
+            {
+                break;
+            }
+
           const pageButton = document.createElement("button");
           pageButton.innerHTML = i;
           pageButton.id = i;
@@ -128,34 +129,28 @@ export function PUSH(target) {
       }
 
       let activeButtonId = 1;
-      function updatePageButtons(currentPage) {
-        if (page_length >= 3) {
-          if (currentPage <= page_length - 2) {
-            updateButtons(currentPage);
-          } else {
-            updateButtons(page_length - 2);
-          }
-        } else if (page_length <= 2) {
-          while (rangeButtonPage.firstChild) {
-            rangeButtonPage.removeChild(rangeButtonPage.firstChild);
-          }
-          for (let i = 1; i <= page_length; i++) {
-            const pageButton = document.createElement("button");
-            pageButton.innerHTML = i;
-            pageButton.id = i;
-            if (activeButtonId === i) {
-              pageButton.classList.add("active");
-            }
-            pageButton.addEventListener("click", () => {
-              activeButtonId = i;
 
-              updatePageButtons(activeButtonId);
-              updatePage(activeButtonId);
-            });
-            rangeButtonPage.appendChild(pageButton);
-          }
+      function updatePageButtons(currentPage) {
+        // Check if it's not the first page
+        if (currentPage > 1) {
+          firstButton.style.display = "inline";  // Show the first button
+          prevButton.disabled = false;           // Enable the previous button
+        } else {
+          firstButton.style.display = "none";    // Hide the first button on the first page
+          prevButton.disabled = true;            // Disable the previous button on the first page
         }
-      }
+
+        if (currentPage === page_length) {
+            nextButton.style.display = "none"; // Hide nextButton when on the last page
+            lastButton.style.display = "none"
+          } else {
+            nextButton.style.display = "inline"; // Show nextButton otherwise
+            lastButton.style.display = "inline";
+          }
+
+        updateButtons(currentPage);
+}
+      updatePageButtons(activeButtonId);
 
       input_page.addEventListener("keyup", function (event) {
         if (event.keyCode === 13) {
@@ -196,17 +191,12 @@ export function PUSH(target) {
       updatePage(currentPage);
       updatePageButtons(currentPage);
 
-      slicePage.classList.add("inline");
       prevButton.classList.add("inline");
       nextButton.classList.add("inline");
       rangeButtonPage.classList.add("inline");
-    })
-    .catch((err) => {
-      console.log(err);
-    });
 }
 
-const search = document.querySelector("#search");
+
 function push_target(value) {
   const target = search.value.toLowerCase().split(" ");
   console.log(target);
@@ -230,6 +220,8 @@ search_btn.addEventListener("click", () => {
   push_target(input_value.value);
 });
 
+
+const search = document.querySelector("#search");
 search.addEventListener("keyup", function (event) {
   if (event.keyCode === 13) {
     push_target(event.target.value);

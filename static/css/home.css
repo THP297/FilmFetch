@@ -9,7 +9,6 @@
   height: 10%;
   width: 100%;
 }
-
 .header h1 {
   display: inline-block;
   font-size: 36px;
@@ -19,13 +18,11 @@
   -webkit-text-fill-color: rgb(32, 31, 31);
   filter: blur(0.1px);
 }
-
 @keyframes blink {
   50% {
     opacity: 0.4;
   }
 }
-
 .header p {
   margin: 0;
   padding: 0;
@@ -37,8 +34,11 @@
   height: 80%;
 }
 
-#no-result {
-  font-size: 30px;
+#display-content h2 {
+  padding: 10px;
+  font-size: 3vw;
+  color: white;
+  font-weight: bolder;
 }
 
 #search:-webkit-autofill,
@@ -46,6 +46,10 @@
 #search:-webkit-autofill:focus,
 #search:-webkit-autofill:active {
   -webkit-background-clip: text;
+}
+
+#search::-moz-placeholder {
+  color: rgba(194, 17, 197, 0.5);
 }
 
 #search::placeholder {
@@ -63,7 +67,6 @@
   border-radius: 20px;
   border: 1px solid rgba(233, 13, 237, 0.5);
 }
-
 #search:focus {
   outline: none;
   border: 3px solid rgba(233, 13, 237, 0.5);
@@ -73,11 +76,9 @@
   background: none;
   border: 1px solid rgba(233, 13, 237, 0.5);
 }
-
 #searchBtn i {
   color: rgba(233, 13, 237, 0.5);
 }
-
 #searchBtn:hover {
   border: 1px solid rgba(233, 13, 237, 0.5);
   background-color: rgba(233, 13, 237, 0.5);
@@ -110,28 +111,19 @@ a {
   transition: all 0.3s ease;
   text-align: center;
 }
-
 .category:hover {
   -webkit-text-stroke: 1px rgb(234, 157, 238);
   -webkit-text-fill-color: rgb(32, 31, 31);
   filter: blur(0.1px);
   transform: scale(1.5);
 }
-
 .category.active {
   background-color: #555;
 }
 
-#movie-section {
+.movie-section {
   margin-top: 5px;
   margin-bottom: 5px;
-}
-
-h2 {
-  padding: 10px;
-  font-size: 20px;
-  color: white;
-  font-weight: bolder;
 }
 
 #random_row,
@@ -195,6 +187,4 @@ nav ul li a {
 
 nav ul li a:hover {
   color: #ccc;
-}
-
-/*# sourceMappingURL=Front.css.map */
+}/*# sourceMappingURL=Home.css.map */

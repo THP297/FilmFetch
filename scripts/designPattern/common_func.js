@@ -1,6 +1,7 @@
 export const IMG_URL = "https://image.tmdb.org/t/p/w500";
 const API_KEY = "?api_key=846f16d2846b863d9986bcc6dbb1b6c2";
 const MOVIES_DETAIL_URL = "https://api.themoviedb.org/3/movie/";
+
 export function DefinePoster(poster_path) {
   var item = document.createElement("img");
   item.setAttribute("src", IMG_URL + poster_path);
@@ -33,7 +34,6 @@ function PUSH_related(id, related_movie) {
 
   const url = get_related_movie_url(id);
   get_related_movie(url).then((data) => {
-    console.log(data.results.length);
     if (data.results.length == 0) {
       let related_movies = document.querySelector("#related_movies");
       related_movies.style.display = "none";

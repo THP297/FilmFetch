@@ -1,0 +1,20 @@
+$primary-color: #3498db;
+$secondary-color: #f27bf4;
+$tertiary-color: rgba(233, 13, 237, 0.5);
+$input-width: 3%;
+
+@media (max-width: 1200px) {
+    $input-width: 4%;
+}
+
+@media (max-width: 992px) {
+    $input-width: 5%;
+}
+
+@media (max-width: 768px) {
+    $input-width: 6%;
+}
+
+@media (max-width: 576px) {
+    $input-width: 10%;
+}

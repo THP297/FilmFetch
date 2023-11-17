@@ -1,66 +1,51 @@
-import { create_movie_frame, DefinePoster, IMG_URL } from "./common_func.js";
+import { create_movie_frame} from "./designPattern/common_func.js";
 
 const content_section = document.querySelector(".content-section");
 
-export default function PUSH(id) {
+export default async function PUSH(id) {
   content_section.style.height = "100vh";
 
-  const API_KEY = "?api_key=846f16d2846b863d9986bcc6dbb1b6c2";
+  const API_KEY = "846f16d2846b863d9986bcc6dbb1b6c2";
   const BASE_URL = "https://api.themoviedb.org/3/discover/movie";
-  const GENRES = document.querySelector("#genre-frame");
-  const hashmap = {};
+  const GENRES = document.querySelector(".genre-frame");
 
-  function Push_genre_movie_poster(data) {
-    data.results.forEach((movie) => {
-      movie.genre_ids.forEach((genre_id) => {
-        if (!hashmap[genre_id]) {
-          hashmap[genre_id] = [movie];
-        } else {
-          hashmap[genre_id].push(movie);
-        }
-      });
-    });
-  }
-
-  async function get_genre_movie(url) {
+  async function fetchMoviesByGenre(genreId) {
     try {
-      const response = await fetch(url);
+      const response = await fetch(`${BASE_URL}?api_key=${API_KEY}&with_genres=${genreId}`);
       const data = await response.json();
-      Push_genre_movie_poster(data);
+  
+      if (data.results) {
+        console.log('Movies with Genre ID 27 (Horror):', data.results);
+        return data.results;
+      } else {
+        console.error('Error fetching movies:', data.status_message);
+      }
     } catch (error) {
-      console.log(error);
+      console.error('Error fetching movies:', error.message);
     }
   }
 
-  function get_genre_movie_url() {
-    const promises = [];
-    for (let i = 1; i <= 500; i++) {
-      var page = "&page=" + String(i);
-      let url = BASE_URL + API_KEY + page;
-      promises.push(get_genre_movie(url));
-    }
-    return Promise.all(promises);
-  }
+      const movie_genre = await fetchMoviesByGenre(id)
 
-  const spinner = document.querySelector("#spinner");
-  spinner.style.display = "block";
-  const PaginationVisible = document.querySelector(".pagination");
-  PaginationVisible.style.display = "none";
+      const PaginationVisible = document.querySelector(".pagination");
+      PaginationVisible.style.display = "none";
 
-  get_genre_movie_url()
-    .then((res) => {
+      const spinner = document.querySelector("#spinner");
+      spinner.style.display = "block";
+
+      const page_length = Math.ceil(movie_genre.length / 18);
+
       content_section.style.height = "auto";
       spinner.style.display = "none";
       PaginationVisible.style.display = "flex";
-      const movie_genre_id = Number(id);
-      const movie_genre = hashmap[movie_genre_id];
-      const page_length = Math.ceil(movie_genre.length / 18);
+
+
       const input_page = document.querySelector("#input-page");
       input_page.setAttribute("placeholder", ".../" + String(page_length));
       let currentPage = 1;
-      const totalPages = 3;
-      const slicePage = document.querySelector(".slice-page");
+
       const rangeButtonPage = document.querySelector("#range-button-page");
+
       const firstButton = document.querySelector("#first-button");
       firstButton.innerHTML = "1";
 
@@ -101,6 +86,12 @@ export default function PUSH(id) {
           rangeButtonPage.removeChild(rangeButtonPage.firstChild);
         }
         for (let i = page; i <= page + 2; i++) {
+
+          if (i > Math.ceil(movie_genre.length/18))
+          {
+            break;
+          }
+
           const pageButton = document.createElement("button");
           pageButton.innerHTML = i;
           pageButton.id = i;
@@ -113,16 +104,23 @@ export default function PUSH(id) {
             updatePage(activeButtonId);
           });
           rangeButtonPage.appendChild(pageButton);
+          console.log(pageButton)
         }
       }
 
       let activeButtonId = 1;
+
       function updatePageButtons(currentPage) {
-        if (currentPage <= movie_genre.length / 18 - 2) {
-          updateButtons(currentPage);
-        } else {
-          updateButtons(page_length - 2);
-        }
+              // Check if it's not the first page
+              if (currentPage > 1) {
+                firstButton.style.display = "inline";  // Show the first button
+                prevButton.disabled = false;           // Enable the previous button
+              } else {
+                firstButton.style.display = "none";    // Hide the first button on the first page
+                prevButton.disabled = true;            // Disable the previous button on the first page
+              }
+
+              updateButtons(currentPage);
       }
 
       input_page.addEventListener("keyup", function (event) {
@@ -164,14 +162,9 @@ export default function PUSH(id) {
       updatePage(currentPage);
       updatePageButtons(currentPage);
 
-      slicePage.classList.add("inline");
       prevButton.classList.add("inline");
       nextButton.classList.add("inline");
       rangeButtonPage.classList.add("inline");
-    })
-    .catch((err) => {
-      console.log(err);
-    });
 }
 
 let genres = {
@@ -224,6 +217,7 @@ function send_genre(id, genre_title) {
       const genres_content = doc.querySelector("#display-content");
       root_content.innerHTML = genres_content.innerHTML;
       let genreTitle = document.querySelector("#genre-title");
+      console.log(genreTitle)
       genreTitle.innerHTML = genre_title;
       PUSH(id);
     });

@@ -1,12 +1,17 @@
-import { RANDOM } from "./RANDOM.js";
-import { NOWPLAYING } from "./NOWPLAYING.js";
-import { POPULAR } from "./POPULAR.js";
-import { UPCOMING } from "./UPCOMING.js";
-import { setup_GENRES, GENRE_BUTTON_effect } from "./GENRES.js";
+import {NowPlaying, Popular, Upcoming, Random} from "./MovieLists.js";
+import ListGenres from "./designPattern/ListGenres.js";
 
-RANDOM();
-NOWPLAYING();
-POPULAR();
-UPCOMING();
-setup_GENRES();
-GENRE_BUTTON_effect();
+const nowPlaying = new NowPlaying("#top_rated_row","https://api.themoviedb.org/3/movie/top_rated");
+const popular = new Popular("#popular_row","https://api.themoviedb.org/3/movie/popular");
+const upcoming = new Upcoming("#upcoming_row","https://api.themoviedb.org/3/movie/upcoming");
+const random = new Random("#random_row","https://api.themoviedb.org/3/discover/movie","https://api.themoviedb.org/3/movie/");
+
+
+nowPlaying.run();
+popular.run();
+upcoming.run();
+random.run();
+
+const listGenres=  new ListGenres();
+listGenres.setUpResponsiveGenres();
+listGenres.setGenreTemplate();
