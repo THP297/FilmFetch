@@ -1,5 +1,5 @@
 import UserActionsController from "../UserActionsController.js";
-import SearchController from "../Search/SearchController.js";
+import SearchController from "./BasePage/Search/SearchController.js"
 class ConcreteSearch extends UserActionsController {
     constructor(){
         super();

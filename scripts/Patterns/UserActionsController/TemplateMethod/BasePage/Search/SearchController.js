@@ -1,6 +1,6 @@
 import  BasePage  from "../BasePage.js";
 import SearchFetcher from "./SearchFetcher.js"
-import BasePagination from "../../ObserverPagination/BasePagination.js";
+import BasePagination from "../../../../PageContent/BasePagination/BasePagination.js"
 
    class SearchController extends BasePage {
 

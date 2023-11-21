@@ -1,4 +1,4 @@
-import ObserverPagination from "./ObserverPagination.js";
+import ObserverPagination from "../ObserverPagination.js";
 
 class DerivedButtonEvents extends ObserverPagination{
 

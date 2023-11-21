@@ -1,5 +1,5 @@
 import UserActionsController, { genres } from "../UserActionsController.js";
-import GenreController from "../Genre/GenreController.js";
+import GenreController from "./BasePage/Genre/GenreController.js";
 
 
 class ConcreteGenre extends UserActionsController{

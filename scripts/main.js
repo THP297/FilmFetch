@@ -1,6 +1,6 @@
 import {NowPlaying, Popular, Upcoming, Random} from "./designMovieLists/MovieLists.js"
-import ConcreteGenre from "./designUserActions/UserActionsController/TemplateMethod/ConcreteGenre.js";
-import ConcreteSearch from "./designUserActions/UserActionsController/TemplateMethod/ConcreteSearch.js";
+import ConcreteSearch from "./Patterns/UserActionsController/TemplateMethod/ConcreteSearch.js";
+import ConcreteGenre from "./Patterns/UserActionsController/TemplateMethod/ConcreteGenre.js";
 
 
 const nowPlaying = new NowPlaying("#top_rated_row","https://api.themoviedb.org/3/movie/top_rated");
