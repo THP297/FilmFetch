@@ -1,5 +1,5 @@
 export const IMG_URL = "https://image.tmdb.org/t/p/w500";
-const API_KEY = "?api_key=846f16d2846b863d9986bcc6dbb1b6c2";
+const API_KEY = "846f16d2846b863d9986bcc6dbb1b6c2";
 const MOVIES_DETAIL_URL = "https://api.themoviedb.org/3/movie/";
 
 export function DefinePoster(poster_path) {
@@ -28,7 +28,7 @@ function PUSH_related(id, related_movie) {
   function get_related_movie_url(id) {
     var random_page = "&page=" + String(Math.floor(Math.random() * 500) + 1);
     let url =
-      MOVIES_DETAIL_URL + String(id) + "/similar" + API_KEY + random_page;
+      MOVIES_DETAIL_URL + String(id) + "/similar" + "?api_key=" + API_KEY + random_page;
     return url;
   }
 
@@ -67,12 +67,12 @@ function watch_movie(element) {
       const RELATED = document.querySelector(".related-row-1");
       PUSH_related(element.id, RELATED);
 
-      let url = MOVIES_DETAIL_URL + String(element.id) + API_KEY;
+      let url = MOVIES_DETAIL_URL + String(element.id) + "?api_key=" + API_KEY;
       fetch(url)
         .then((res) => res.json())
         .then((data) => {
           const MOVIE_VIDEO_URL =
-            MOVIES_DETAIL_URL + String(element.id) + "/videos" + API_KEY;
+            MOVIES_DETAIL_URL + String(element.id) + "/videos" + "?api_key=" + API_KEY;
           fetch(MOVIE_VIDEO_URL)
             .then((response) => response.json())
             .then((vid) => {

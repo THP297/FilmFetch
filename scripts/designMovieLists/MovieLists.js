@@ -1,4 +1,4 @@
-import { create_movie_frame} from "./designPattern/common_func.js";
+import { create_movie_frame } from "../../helper/common_func.js";
 
 class CategoryTemplate {
     constructor(category_id, baseUrl) {
