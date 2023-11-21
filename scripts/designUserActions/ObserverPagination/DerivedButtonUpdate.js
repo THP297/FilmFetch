@@ -13,6 +13,7 @@ class DerivedButtonUpdate extends ObserverPagination{
       }
 
       run() {
+        this.handleInFirstPage();
         this.clearButtons();
         this.createButtons();
       }

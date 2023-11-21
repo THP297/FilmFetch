@@ -49,17 +49,18 @@ class BasePagination extends Subject {
     this.run();
   }
 
+
   handleInFirstPage() {
-    const isNotFirstPage = this.currentPage > 1;
-    const isNotLastPage = this.currentPage < this.page_length;
-    const isThirdPageOrMore = this.currentPage >= 3;
+    const isNotFirstPage = this.base.currentPage > 1;
+    const isNotLastPage = this.base.currentPage < this.base.page_length;
+    const isThirdPageOrMore = this.base.currentPage >= 3;
 
-    this.firstButton.style.display = isNotFirstPage ? "inline" : "none";
-    this.firstButton.style.opacity = isThirdPageOrMore ? "1" : "0";
-    this.prevButton.disabled = !isNotFirstPage;
-    this.nextButton.disabled = !isNotLastPage;
+    this.base.firstButton.style.display = isNotFirstPage ? "inline" : "none";
+    this.base.firstButton.style.opacity = isThirdPageOrMore ? "1" : "0";
+    this.base.prevButton.disabled = !isNotFirstPage;
+    this.base.nextButton.disabled = !isNotLastPage;
+    
 
-    this.notifyObservers([new DerivedButtonUpdate])
   }
 
   updateMovies() {
@@ -75,7 +76,7 @@ class BasePagination extends Subject {
 
   run() {
     this.updateMovies();
-    this.handleInFirstPage();
+    
   }
 }
 
