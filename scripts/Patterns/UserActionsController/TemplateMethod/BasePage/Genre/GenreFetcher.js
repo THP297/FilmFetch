@@ -8,10 +8,8 @@ class GenreFetcher{
         try {
           const response = await fetch(`${this.baseUrl}?api_key=${this.api_key}&with_genres=${genreId}`);
           const data = await response.json();
-          console.log(data)
       
           if (data.results) {
-            console.log(`Movies with Genre ID ${genreId} :`, data.results);
             return data.results;
           } else {
             console.error('Error fetching movies:', data.status_message);

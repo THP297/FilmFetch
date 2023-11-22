@@ -20,7 +20,6 @@ class SearchFetcher{
             if (data.results && data.results.length > 0) {
               allResults = allResults.concat(data.results);
               totalPages = data.total_pages;
-              console.log(totalPages);
               page++;
             } else {
               console.error('No results found.');

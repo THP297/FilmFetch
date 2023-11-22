@@ -1,6 +1,6 @@
 import BasePage from "../BasePage.js";
 import GenreFetcher from "./GenreFetcher.js";
-import BasePagination from "../../ObserverPagination/BasePagination.js";
+import BasePagination from "../../../../PageContent/BasePagination/BasePagination.js"
 
   class GenreController extends BasePage {
   constructor() {
@@ -16,7 +16,6 @@ import BasePagination from "../../ObserverPagination/BasePagination.js";
     this.hideLoading();
   }
 }
-
   
   export default GenreController;
   

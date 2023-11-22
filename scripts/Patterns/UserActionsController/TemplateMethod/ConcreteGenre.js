@@ -1,11 +1,12 @@
 import UserActionsController, { genres } from "../UserActionsController.js";
-import GenreController from "../Genre/GenreController.js";
+import GenreController from "./BasePage/Genre/GenreController.js";
 
 
 class ConcreteGenre extends UserActionsController{
 
     constructor(){
         super();
+        this.movieId;
     }
 
     fetchMovies = (id) =>{
@@ -17,8 +18,8 @@ class ConcreteGenre extends UserActionsController{
         const items = document.querySelectorAll(".category");
         items.forEach((item) => {
         item.addEventListener("click", (e) => {
-            this.value = e.target.id;
-            this.replaceContent("genres.html",e.target.innerHTML);
+            this.movieId = e.target.id;
+            this.replaceContent("templates/genres.html",e.target.innerHTML,this.movieId);
         });
         });
     }
