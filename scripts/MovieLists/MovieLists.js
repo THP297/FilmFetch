@@ -1,5 +1,5 @@
 import { create_movie_frame } from "../../helper/common_func.js";
-
+import MovieFrame from "../CreateMovieFrame/main.js";
 class CategoryTemplate {
     constructor(category_id, baseUrl) {
       this.apiKey = "846f16d2846b863d9986bcc6dbb1b6c2";
@@ -22,7 +22,8 @@ class CategoryTemplate {
     run = async () => {
       const data = await this.fetchData();
       data.results.slice(0, 12).forEach((element) => {
-        const movieCol = create_movie_frame(element);
+        const movieFrame = new MovieFrame(element);
+        const movieCol = movieFrame.createMovieFrame();
         this.category.appendChild(movieCol);
       });
     };
@@ -61,7 +62,8 @@ class Random extends CategoryTemplate {
         try {
         const res = await fetch(movie_detail_url);
         const data = await res.json();
-        const movieCol = create_movie_frame(data);
+        const movieFrame = new MovieFrame(data);
+        const movieCol = movieFrame.createMovieFrame();
         category.appendChild(movieCol);
         } catch (error) {
         console.log(error);

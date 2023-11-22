@@ -1,7 +1,8 @@
-import { create_movie_frame } from "../../../../helper/common_func.js";
 import DerivedButtonEvents from "../Observers/DerivedButtonEvents.js";
 import DerivedButtonUpdate from "../Observers/DerivedButtonUpdate.js";
 import { handleInFirstPage, initializeButton } from "../../../../helper/littleFunctions.js";
+import MovieFrame from "../../../CreateMovieFrame/main.js";
+
 import Subject from "../Subject.js";
 
 class BasePagination extends Subject {
@@ -41,7 +42,8 @@ class BasePagination extends Subject {
     const movies_per_page = this.movie_genre.slice(start, end);
     this.genreFrame.innerHTML = "";
     movies_per_page.forEach((movie) => {
-      const movieCol = create_movie_frame(movie);
+      const movieFrame = new MovieFrame(movie);
+      const movieCol = movieFrame.createMovieFrame();
       this.genreFrame.appendChild(movieCol);
     });
   }
