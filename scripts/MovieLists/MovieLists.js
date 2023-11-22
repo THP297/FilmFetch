@@ -6,7 +6,7 @@ class CategoryTemplate {
       this.category_id = category_id;
       this.category = document.querySelector(category_id);
     }
-  
+    //concrete method
     fetchData = async () => {
       try {
         let movie_detail_url = this.baseUrl + "?api_key="  + this.apiKey;
@@ -17,7 +17,7 @@ class CategoryTemplate {
         console.log(error);
       }
     };
-  
+    //concrete method
     run = async () => {
       const data = await this.fetchData();
       data.results.slice(0, 12).forEach((element) => {

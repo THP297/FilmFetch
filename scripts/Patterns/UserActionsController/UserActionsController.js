@@ -25,7 +25,7 @@ class UserActionsController{
     templateMethod  =  () =>{
         this.addUserEvent();
     }
-
+    //abstract method
     fetchMovies = (movieValue) => {}
 
     replaceContent = (htmlName, title, movieValue) =>{
@@ -42,7 +42,7 @@ class UserActionsController{
       this.fetchMovies(movieValue)
     });
     }
-
+    //abstract method
     addUserEvent = () => {} //addUser run -> replaceContent run -> fetchMovies
 
 }
