@@ -1,4 +1,4 @@
-import { NowPlaying, Random,Popular,Upcoming } from "./scripts/MovieLists/MovieLists.js";
+import { NowPlaying, Random, Popular, Upcoming } from "./scripts/MovieLists/MovieLists.js";
 import ConcreteSearch from "./scripts/Patterns/UserActionsController/TemplateMethod/ConcreteSearch.js";
 import ConcreteGenre from "./scripts/Patterns/UserActionsController/TemplateMethod/ConcreteGenre.js";
 

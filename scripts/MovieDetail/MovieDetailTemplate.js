@@ -1,7 +1,4 @@
 class MovieDetailsTemplate {
-    constructor(element) {
-        this.element = element;
-    }
 
     fetchMovieDetail = async() => {
         return await fetch("templates/movie_detail.html")

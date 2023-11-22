@@ -1,5 +1,4 @@
-import { create_movie_frame } from "../../helper/common_func.js";
-import MovieFrame from "../CreateMovieFrame/main.js";
+import MovieFrame from "../MovieFrame/main.js";
 class CategoryTemplate {
     constructor(category_id, baseUrl) {
       this.apiKey = "846f16d2846b863d9986bcc6dbb1b6c2";

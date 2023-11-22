@@ -6,27 +6,27 @@ import MovieRelated from "./MovieRelated.js";
 import MovieVideo from "./MovieVideo.js";
 
 class MovieDetail {
-    constructor(element) {
-        this.element = element;
+    constructor(movieData) {
+        this.movieData = movieData;
     }
 
     create = async () => {
-        const detailsTemplate = new MovieDetailsTemplate(this.element);
+        const detailsTemplate = new MovieDetailsTemplate();
         await detailsTemplate.fetchMovieDetail();
 
-        const image = new MovieImage(this.element);
+        const image = new MovieImage(this.movieData);
         image.setImage();
 
-        const description = new MovieDescription(this.element);
+        const description = new MovieDescription(this.movieData);
         description.setDesc();
 
-        const related = new MovieRelated(this.element);
+        const related = new MovieRelated(this.movieData);
         related.setRelated();
 
-        const data = new MovieData(this.element);
+        const data = new MovieData(this.movieData);
         await data.fetchMovieData();
 
-        const video = new MovieVideo(this.element);
+        const video = new MovieVideo(this.movieData);
         await video.fetchMovieVideo();
     }
 }

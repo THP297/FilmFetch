@@ -1,4 +1,4 @@
-import MovieFrame from "../../main.js";
+import MovieFrame from "../../MovieFrame/main.js";
 
 class RelatedMovies {
     constructor(id, related_movie) {

@@ -1,12 +1,12 @@
 class MovieDescription {
-    constructor(element) {
-        this.element = element;
+    constructor(movieData) {
+        this.movieData = movieData;
     }
 
     setDesc() {
         const section_desc = document.querySelector("#section-desc");
         const desc = document.createElement("p");
-        desc.textContent = this.element.overview;
+        desc.textContent = this.movieData.overview;
         section_desc.appendChild(desc);
     }
 }

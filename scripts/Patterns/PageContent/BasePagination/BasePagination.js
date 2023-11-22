@@ -1,7 +1,7 @@
 import DerivedButtonEvents from "../Observers/DerivedButtonEvents.js";
 import DerivedButtonUpdate from "../Observers/DerivedButtonUpdate.js";
 import { handleInFirstPage, initializeButton } from "../../../../helper/littleFunctions.js";
-import MovieFrame from "../../../CreateMovieFrame/main.js";
+import MovieFrame from "../../../MovieFrame/main.js";
 
 import Subject from "../Subject.js";
 

@@ -1,12 +1,12 @@
 class MovieData {
-    constructor(element) {
-        this.element = element;
+    constructor(movieData) {
+        this.movieData = movieData;
         this.MOVIES_DETAIL_URL = "https://api.themoviedb.org/3/movie/";
         this.API_KEY = "846f16d2846b863d9986bcc6dbb1b6c2";
     }
 
     fetchMovieData= async () => {
-        let url = this.MOVIES_DETAIL_URL + String(this.element.id) + "?api_key=" + this.API_KEY;
+        let url = this.MOVIES_DETAIL_URL + String(this.movieData.id) + "?api_key=" + this.API_KEY;
         return await fetch(url)
             .then((res) => res.json())
             .then((data) => this.setMovieData(data));
