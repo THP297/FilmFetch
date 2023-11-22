@@ -3,6 +3,7 @@ import SearchController from "./BasePage/Search/SearchController.js"
 class ConcreteSearch extends UserActionsController {
     constructor(){
         super();
+        this.movieName;
     }
 
     fetchMovies = (movieName) =>{
@@ -16,15 +17,15 @@ class ConcreteSearch extends UserActionsController {
         search_btn.addEventListener("click", () => {
         const input_value = document.querySelector("#search");
         const lowerCaseValue = input_value.value.toLowerCase();
-        this.value = lowerCaseValue;
-        this.replaceContent("search.html", this.value);
+        this.movieName = lowerCaseValue;
+        this.replaceContent("templates/search.html", this.movieName,this.movieName);
         });
 
         const search = document.querySelector("#search");
-        search.addEventListener("keyup",() => {
+        search.addEventListener("keyup",(event) => {
             if (event.keyCode === 13) {
-                this.value =  search.value.toLowerCase();
-                this.replaceContent("search.html",this.value);
+                this.movieName =  search.value.toLowerCase();
+                this.replaceContent("templates/search.html",this.movieName,this.movieName);
             }
         });
 

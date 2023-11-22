@@ -22,17 +22,13 @@ let genres = [
 
 class UserActionsController{
 
-    constructor(){
-        this.value = null;
-    }
-
     templateMethod  =  () =>{
         this.addUserEvent();
     }
 
-    fetchMovies = (value) => {}
+    fetchMovies = (movieValue) => {}
 
-    replaceContent = (htmlName, title) =>{
+    replaceContent = (htmlName, title, movieValue) =>{
     fetch(htmlName)
     .then((res) => res.text())
     .then((html) => {
@@ -43,7 +39,7 @@ class UserActionsController{
       root_content.innerHTML = genres_content.innerHTML;
       let genreTitle = document.querySelector("#genre-title");
       genreTitle.innerHTML = title;
-      this.fetchMovies(this.value)
+      this.fetchMovies(movieValue)
     });
     }
 

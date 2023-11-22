@@ -7,10 +7,10 @@ import Subject from "../Subject.js";
 class BasePagination extends Subject {
   constructor() {
     super();
-    this._movie_genre = null;
+    this._movie_genre = [];
     this.currentPage = 1;
     this.page_length = 0;
-    this.GENRES = document.querySelector(".genre-frame");
+    this.genreFrame = document.querySelector(".genre-frame");
     this.input_page = document.querySelector("#input-page");
     this.rangeButtonPage = document.querySelector("#range-button-page");
     this.lastButton = document.querySelector("#last-button");
@@ -39,10 +39,10 @@ class BasePagination extends Subject {
     const start = (this.currentPage - 1) * 18;
     const end = this.currentPage * 18;
     const movies_per_page = this.movie_genre.slice(start, end);
-    this.GENRES.innerHTML = "";
+    this.genreFrame.innerHTML = "";
     movies_per_page.forEach((movie) => {
       const movieCol = create_movie_frame(movie);
-      this.GENRES.appendChild(movieCol);
+      this.genreFrame.appendChild(movieCol);
     });
   }
 

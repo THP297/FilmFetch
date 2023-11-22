@@ -1,7 +1,10 @@
-class Observer {
+class ObserverPagination {
+    constructor(){
+      this.basePagination;
+    }
     update(subject){
   
     }
   }
 
-export default Observer;  
+export default ObserverPagination;  

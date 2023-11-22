@@ -2,7 +2,7 @@ import { create_movie_frame } from "../../helper/common_func.js";
 
 class CategoryTemplate {
     constructor(category_id, baseUrl) {
-      this.apiKey = "?api_key=846f16d2846b863d9986bcc6dbb1b6c2";
+      this.apiKey = "846f16d2846b863d9986bcc6dbb1b6c2";
       this.baseUrl = baseUrl;
       this.category_id = category_id;
       this.category = document.querySelector(category_id);
@@ -10,7 +10,7 @@ class CategoryTemplate {
   
     fetchData = async () => {
       try {
-        let movie_detail_url = this.baseUrl + this.apiKey;
+        let movie_detail_url = this.baseUrl + "?api_key="  + this.apiKey;
         const response = await fetch(movie_detail_url);
         const data = await response.json();
         return data;
@@ -47,7 +47,7 @@ class Random extends CategoryTemplate {
     fetchData = async () => {
         try {
         var random_page = "&page=" + String(Math.floor(Math.random() * 500) + 1);
-        let discover_url = this.baseUrl + this.apiKey + random_page;
+        let discover_url = this.baseUrl + "?api_key=" + this.apiKey + random_page;
         const response = await fetch(discover_url);
         const data = await response.json();
         return data;
@@ -57,7 +57,7 @@ class Random extends CategoryTemplate {
     };
 
     getRandomPoster = async (movieId, category) => {
-        let movie_detail_url = this.movieDetailUrl + String(movieId) + this.apiKey;
+        let movie_detail_url = this.movieDetailUrl + String(movieId) + "?api_key=" + this.apiKey;
         try {
         const res = await fetch(movie_detail_url);
         const data = await res.json();

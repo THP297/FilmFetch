@@ -4,7 +4,6 @@ class DerivedButtonEvents extends ObserverPagination{
 
   constructor(){
     super()
-    this.basePagination = null;
   }
 
   update(subject)
